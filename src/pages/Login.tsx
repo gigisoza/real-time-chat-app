@@ -8,7 +8,7 @@ export default function Login() {
             Join the conversation, meet new people, and make connections in one
             shared room.
           </p>
-          <button className="btn btn-primary">Login With Google</button>
+          <button className="btn">Login With Google</button>
         </div>
       </div>
     </div>
