@@ -1,3 +1,11 @@
+import ChatBox from "../components/ChatBox";
+import SendMessage from "../components/SendMessage";
+
 export default function ChatRoom() {
-  return <div>ChatRoom</div>;
+  return (
+    <div>
+      <ChatBox />
+      <SendMessage />
+    </div>
+  );
 }
