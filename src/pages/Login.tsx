@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const { currentUser, signinWithGoogle } = UserAuth();
   console.log(currentUser);
 
@@ -11,6 +15,12 @@ export default function Login() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/chat");
+    }
+  }, [currentUser, navigate]);
 
   return (
     <div className="hero min-h-screen bg-base-200">

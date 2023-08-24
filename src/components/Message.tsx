@@ -1,6 +1,7 @@
 type Text = {
   text: string;
   name: string;
+  displayName: string;
 };
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function Message({ message }: Props) {
+  console.log(message);
+
   return (
     <div>
       <div className="chat chat-start">
@@ -16,7 +19,7 @@ export default function Message({ message }: Props) {
             <img src="" />
           </div>
         </div>
-        <div className="chat-header">{message.name}</div>
+        <div className="chat-header">{message.displayName}</div>
         <div className="chat-bubble">{message.text}</div>
       </div>
     </div>

@@ -1,11 +1,33 @@
 import { useState } from "react";
+import { UserAuth } from "../context/AuthContext";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function SendMessage() {
   const [value, setValue] = useState<string>("");
-  console.log(value);
+  const { currentUser } = UserAuth();
 
-  const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (value.trim() === "") {
+      alert("Enter valid message!");
+      return;
+    }
+
+    try {
+      const { uid, displayName, photoURL } = currentUser;
+      await addDoc(collection(db, "messages"), {
+        text: value,
+        name: displayName,
+        avatar: photoURL,
+        createdAt: serverTimestamp(),
+        uid,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
     console.log(value);
     setValue("");
   };
