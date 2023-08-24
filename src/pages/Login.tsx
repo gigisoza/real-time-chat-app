@@ -1,8 +1,16 @@
 import { UserAuth } from "../context/AuthContext";
 
 export default function Login() {
-  const { currentUser } = UserAuth();
+  const { currentUser, signinWithGoogle } = UserAuth();
   console.log(currentUser);
+
+  const handleLogin = async () => {
+    try {
+      await signinWithGoogle();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -13,7 +21,9 @@ export default function Login() {
             Join the conversation, meet new people, and make connections in one
             shared room.
           </p>
-          <button className="btn">Login With Google</button>
+          <button onClick={handleLogin} className="btn">
+            Login With Google
+          </button>
         </div>
       </div>
     </div>
